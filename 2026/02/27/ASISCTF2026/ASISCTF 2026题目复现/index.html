@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"maz-dev834.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"language":false,"wrap":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="以下题目都是基本本地环境进行复现: 比赛期间没做出来 :) 0x01 ASIS_MAIL题目提供了完整的源码![[Pasted image 20260130144858.png]] api中是一个go程序sso是一个nodejs写的登录auth认证代码objectstore是一个自己写的bucket 初始通过AI分析代码 题型判定与前提假设 题型：源码审计 + 靶场&#x2F;容器 前提：你能访问">
+    <meta name="description" content="以下题目都是基本本地环境进行复现: 比赛期间没做出来 :)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ASISCTF 2026题目复现">
 <meta property="og:url" content="https://maz-dev834.github.io/2026/02/27/ASISCTF2026/ASISCTF%202026%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/index.html">
 <meta property="og:site_name" content="maz-dev834">
-<meta property="og:description" content="以下题目都是基本本地环境进行复现: 比赛期间没做出来 :) 0x01 ASIS_MAIL题目提供了完整的源码![[Pasted image 20260130144858.png]] api中是一个go程序sso是一个nodejs写的登录auth认证代码objectstore是一个自己写的bucket 初始通过AI分析代码 题型判定与前提假设 题型：源码审计 + 靶场&#x2F;容器 前提：你能访问">
+<meta property="og:description" content="以下题目都是基本本地环境进行复现: 比赛期间没做出来 :)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-02-27T08:32:00.000Z">
-<meta property="article:modified_time" content="2026-02-27T13:01:28.430Z">
+<meta property="article:modified_time" content="2026-02-27T13:04:12.486Z">
 <meta property="article:author" content="maz-dev834">
 <meta property="article:tag" content="ASISCTF">
 <meta property="article:tag" content="Web">
@@ -242,6 +242,8 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>以下题目都是基本本地环境进行复现: 比赛期间没做出来 :)</p>
+<span id="more"></span>
+
 <h2 id="0x01-ASIS-MAIL"><a href="#0x01-ASIS-MAIL" class="headerlink" title="0x01 ASIS_MAIL"></a>0x01 ASIS_MAIL</h2><p>题目提供了完整的源码<br>![[Pasted image 20260130144858.png]]</p>
 <p>api中是一个go程序<br>sso是一个nodejs写的登录auth认证代码<br>objectstore是一个自己写的bucket</p>
 <p>初始通过AI分析代码</p>
